@@ -45,7 +45,8 @@ export default function Calendar31() {
           mode="single"
           selected={date}
           onSelect={setDate}
-          className="bg-transparent p-0"
+          className="rounded-lg border [--cell-size:--spacing(22)] md:[--cell-size:--spacing(23)]"
+          buttonVariant="ghost"
           required
         />
       </CardContent>
