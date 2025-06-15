@@ -24,7 +24,10 @@ export default function Home() {
             Save and see your changes instantly.
           </li>
           <li className="tracking-[-.01em]">
-            is this even working yet?
+            Is this even working yet?
+          </li>
+          <li className="tracking-[-.01em]">
+            If you see this, it is working!
           </li>
         </ol>
 
