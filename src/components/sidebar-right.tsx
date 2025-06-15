@@ -12,7 +12,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail,
+  // SidebarRail,
   SidebarSeparator,
 } from "@/components/ui/sidebar"
 
