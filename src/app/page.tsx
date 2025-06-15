@@ -23,8 +23,8 @@ export default function Home() {
           <li className="tracking-[-.01em]">
             Save and see your changes instantly.
           </li>
-          <li>
-            is this even
+          <li className="tracking-[-.01em]">
+            is this even working yet?
           </li>
         </ol>
 
