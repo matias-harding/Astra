@@ -39,7 +39,7 @@ export default function Calendar31() {
   )
 
   return (
-    <Card className="w-fit py-4">
+    <Card className="w-fit py-4 self-center">
       <CardContent className="px-4">
         <Calendar
           mode="single"
