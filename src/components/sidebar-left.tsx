@@ -1,24 +1,26 @@
+// TODO: Cleanup comments and unused imports
+
 "use client"
 
 import * as React from "react"
 import {
   AudioWaveform,
-  Blocks,
-  Calendar,
+  // Blocks,
+  // Calendar,
   Command,
-  Home,
-  Inbox,
+  // Home,
+  // Inbox,
   MessageCircleQuestion,
   Search,
   Settings2,
-  Sparkles,
+  // Sparkles,
   Trash2,
 } from "lucide-react"
 
-import { NavFavorites } from "@/components/nav-favorites"
+// import { NavFavorites } from "@/components/nav-favorites"
 import { NavMain } from "@/components/nav-main"
 import { NavSecondary } from "@/components/nav-secondary"
-import { NavWorkspaces } from "@/components/nav-workspaces"
+// import { NavWorkspaces } from "@/components/nav-workspaces"
 import { TeamSwitcher } from "@/components/team-switcher"
 import {
   Sidebar,
@@ -52,39 +54,29 @@ const data = {
       url: "#",
       icon: Search,
     },
-    {
-      title: "Ask AI",
-      url: "#",
-      icon: Sparkles,
-    },
-    {
-      title: "Home",
-      url: "#",
-      icon: Home,
-      isActive: true,
-    },
-    {
-      title: "Inbox",
-      url: "#",
-      icon: Inbox,
-      badge: "10",
-    },
+    // {
+    //   title: "Ask AI",
+    //   url: "#",
+    //   icon: Sparkles,
+    // },
+    // {
+    //   title: "Home",
+    //   url: "#",
+    //   icon: Home,
+    //   isActive: true,
+    // },
+    // {
+    //   title: "Inbox",
+    //   url: "#",
+    //   icon: Inbox,
+    //   badge: "10",
+    // },
   ],
   navSecondary: [
-    {
-      title: "Calendar",
-      url: "#",
-      icon: Calendar,
-    },
     {
       title: "Settings",
       url: "#",
       icon: Settings2,
-    },
-    {
-      title: "Templates",
-      url: "#",
-      icon: Blocks,
     },
     {
       title: "Trash",
@@ -268,8 +260,8 @@ export function SidebarLeft({
         <NavMain items={data.navMain} />
       </SidebarHeader>
       <SidebarContent>
-        <NavFavorites favorites={data.favorites} />
-        <NavWorkspaces workspaces={data.workspaces} />
+        {/* <NavFavorites favorites={data.favorites} />
+        <NavWorkspaces workspaces={data.workspaces} /> */}
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarRail />
