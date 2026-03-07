@@ -1,3 +1,6 @@
+import { getEvents } from "@/lib/actions/events"
+import { EventsList } from "@/components/events-list"
+
 import { SidebarLeft } from "@/components/sidebar-left"
 import { SidebarRight } from "@/components/sidebar-right"
 import {
@@ -13,7 +16,9 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 
-export default function Page() {
+export default async function Page() {
+  const events = await getEvents()
+
   return (
     <SidebarProvider>
       <SidebarLeft />
@@ -37,8 +42,7 @@ export default function Page() {
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4">
-          <div className="bg-muted/50 mx-auto h-24 w-full max-w-3xl rounded-xl" />
-          <div className="bg-muted/50 mx-auto h-[100vh] w-full max-w-3xl rounded-xl" />
+          <EventsList events={events} />
         </div>
       </SidebarInset>
       <SidebarRight />
