@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { getEvents } from "@/lib/actions/events"
 import { EventsList } from "@/components/events-list"
 
