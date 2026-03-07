@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/move-event",
+      "schedule": "0 0 * * 1"
+    }
+  ]
+}
