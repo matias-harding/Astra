@@ -7,36 +7,27 @@ import { PlusIcon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import type { Event } from "@/generated/prisma"
 
-// Helper function to format date range
-const formatDateRange = (from: string, to: string) => {
-  const fromDate = new Date(from)
-  const toDate = new Date(to)
-  return `${format(fromDate, 'MMM d, h:mm a')} - ${format(toDate, 'h:mm a')}`
+interface Calendar31Props {
+  events: Event[]
 }
 
-const events = [
-  {
-    title: "Team Sync Meeting",
-    from: "2025-06-12T09:00:00",
-    to: "2025-06-12T10:00:00",
-  },
-  {
-    title: "Design Review",
-    from: "2025-06-12T11:30:00",
-    to: "2025-06-12T12:30:00",
-  },
-  {
-    title: "Client Presentation",
-    from: "2025-06-12T14:00:00",
-    to: "2025-06-12T15:00:00",
-  },
-]
+const formatDateRange = (from: Date, to: Date) =>
+  `${format(from, 'MMM d, h:mm a')} - ${format(to, 'h:mm a')}`
 
-export default function Calendar31() {
-  const [date, setDate] = React.useState<Date | undefined>(
-    new Date(2025, 5, 12)
-  )
+export default function Calendar31({ events }: Calendar31Props) {
+  const [date, setDate] = React.useState<Date | undefined>(new Date())
+
+  const dayEvents = events.filter((event) => {
+    if (!date) return false
+    const d = new Date(event.startTime)
+    return (
+      d.getFullYear() === date.getFullYear() &&
+      d.getMonth() === date.getMonth() &&
+      d.getDate() === date.getDate()
+    )
+  })
 
   return (
     <Card className="w-fit py-4 self-center">
@@ -47,6 +38,7 @@ export default function Calendar31() {
           onSelect={setDate}
           className="rounded-lg border [--cell-size:--spacing(22)] md:[--cell-size:--spacing(23)]"
           buttonVariant="ghost"
+          weekStartsOn={1}
           required
         />
       </CardContent>
@@ -70,17 +62,21 @@ export default function Calendar31() {
           </Button>
         </div>
         <div className="flex w-full flex-col gap-2">
-          {events.map((event) => (
-            <div
-              key={event.title}
-              className="bg-muted after:bg-primary/70 relative rounded-md p-2 pl-6 text-sm after:absolute after:inset-y-2 after:left-2 after:w-1 after:rounded-full"
-            >
-              <div className="font-medium">{event.title}</div>
-              <div className="text-muted-foreground text-xs">
-                {formatDateRange(event.from, event.to)}
+          {dayEvents.length === 0 ? (
+            <p className="text-muted-foreground text-sm px-1">No events for this day.</p>
+            ) : (
+            dayEvents.map((event) => (
+              <div
+                key={event.id}
+                className="bg-muted after:bg-primary/70 relative rounded-md p-2 pl-6 text-sm after:absolute after:inset-y-2 after:left-2 after:w-1 after:rounded-full"
+              >
+                <div className="font-medium">{event.title}</div>
+                <div className="text-muted-foreground text-xs">
+                  {formatDateRange(new Date(event.startTime), new Date(event.endTime))}
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </CardFooter>
     </Card>

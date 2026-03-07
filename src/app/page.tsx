@@ -1,3 +1,5 @@
+import { getEvents } from "@/lib/actions/events"
+
 // Sidebars
 import { SidebarLeft } from "@/components/sidebar-left"
 import { SidebarRight } from "@/components/sidebar-right"
@@ -17,7 +19,9 @@ import {
 // Main Calendar component
 import Calendar31  from "@/components/calendar-31"
 
-export default function Home() {
+export default async function Home() {
+  const events = await getEvents()
+
   return (
     <SidebarProvider>
       <SidebarLeft />
@@ -40,7 +44,7 @@ export default function Home() {
             </Breadcrumb>
           </div>
         </header>
-        <Calendar31 />
+        <Calendar31 events={events} />
       </SidebarInset>
       <SidebarRight />
     </SidebarProvider>
