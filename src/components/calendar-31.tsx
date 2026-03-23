@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { format } from "date-fns"
 import { PlusIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -9,12 +8,11 @@ import { Calendar } from "@/components/ui/calendar"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import type { Event } from "@/generated/prisma"
 
+import DayEvent from "@/components/day_event"
+
 interface Calendar31Props {
   events: Event[]
 }
-
-const formatDateRange = (from: Date, to: Date) =>
-  `${format(from, 'MMM d, h:mm a')} - ${format(to, 'h:mm a')}`
 
 export default function Calendar31({ events }: Calendar31Props) {
   const [date, setDate] = React.useState<Date | undefined>(new Date())
@@ -63,20 +61,15 @@ export default function Calendar31({ events }: Calendar31Props) {
         </div>
         <div className="flex w-full flex-col gap-2">
           {dayEvents.length === 0 ? (
-            <p className="text-muted-foreground text-sm px-1">No events for this day.</p>
+              <p className="text-muted-foreground text-sm px-1">
+                No events for this day.
+              </p>
             ) : (
-            dayEvents.map((event) => (
-              <div
-                key={event.id}
-                className="bg-muted after:bg-primary/70 relative rounded-md p-2 pl-6 text-sm after:absolute after:inset-y-2 after:left-2 after:w-1 after:rounded-full"
-              >
-                <div className="font-medium">{event.title}</div>
-                <div className="text-muted-foreground text-xs">
-                  {formatDateRange(new Date(event.startTime), new Date(event.endTime))}
-                </div>
-              </div>
-            ))
-          )}
+              dayEvents.map((event) => (
+                <DayEvent key={event.id} {...event} />
+              ))
+            )
+          }
         </div>
       </CardFooter>
     </Card>
