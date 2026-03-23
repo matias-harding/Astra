@@ -4,7 +4,7 @@ import type { Event } from "@/generated/prisma"
 const formatDateRange = (from: Date, to: Date) =>
   `${format(from, 'MMM d, h:mm a')} - ${format(to, 'h:mm a')}`
 
-export default function DayEvent(event: Event) {
+export default function Event(event: Event) {
   return (
           <div
             key={event.id}
