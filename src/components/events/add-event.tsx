@@ -11,9 +11,13 @@ import {
   DialogClose,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { Field, FieldGroup } from "@/components/ui/field";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
+import { Textarea } from "@/components/ui/textarea"
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+
+import EventDates from "@/components/events/fields/event-dates";
 
 export default function AddEvent() {
   return (
@@ -31,23 +35,34 @@ export default function AddEvent() {
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
-                <DialogTitle>Add Event</DialogTitle>
+                <DialogTitle>New Event</DialogTitle>
               </DialogHeader>
               <FieldGroup>
                 <Field>
-                  <Label htmlFor="name-1">Name</Label>
-                  <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
+                  <Label htmlFor="new-event-title">Title</Label>
+                  <Input id="new-event-title" name="title" />
                 </Field>
+
+                <EventDates />
+
                 <Field>
-                  <Label htmlFor="username-1">Username</Label>
-                  <Input id="username-1" name="username" defaultValue="@peduarte" />
+                  <FieldLabel htmlFor="new-event-notes">
+                    Notes
+                  </FieldLabel>
+                  <Textarea
+                    id="new-event-notes"
+                    name="notes"
+                    placeholder="Add any additional details about the event here."
+                    className="resize-none"
+                  />
                 </Field>
+
               </FieldGroup>
               <DialogFooter>
                 <DialogClose asChild>
                   <Button variant="outline">Cancel</Button>
                 </DialogClose>
-                <Button type="submit">Save changes</Button>
+                <Button type="submit">Add Event</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
