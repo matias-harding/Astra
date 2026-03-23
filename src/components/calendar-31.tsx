@@ -61,15 +61,40 @@ export default function Calendar31({ events }: Calendar31Props) {
               year: "numeric",
             })}
           </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="size-6"
-            title="Add Event"
-          >
-            <PlusIcon />
-            <span className="sr-only">Add Event</span>
-          </Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="size-6"
+                title="Add Event"
+              >
+                <PlusIcon />
+                <span className="sr-only">Add Event</span>
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Add Event</DialogTitle>
+              </DialogHeader>
+              <FieldGroup>
+                <Field>
+                  <Label htmlFor="name-1">Name</Label>
+                  <Input id="name-1" name="name" defaultValue="Pedro Duarte" />
+                </Field>
+                <Field>
+                  <Label htmlFor="username-1">Username</Label>
+                  <Input id="username-1" name="username" defaultValue="@peduarte" />
+                </Field>
+              </FieldGroup>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="outline">Cancel</Button>
+                </DialogClose>
+                <Button type="submit">Save changes</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
         <div className="flex w-full flex-col gap-2">
           {dayEvents.length === 0 ? (
