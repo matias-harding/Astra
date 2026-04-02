@@ -27,7 +27,6 @@ export default function AddEvent() {
   const [isPending, startTransition] = useTransition()
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    console.log("Submitting form...")
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     startTransition(async () => {
@@ -79,7 +78,7 @@ export default function AddEvent() {
               <Button variant="outline" type="button">Cancel</Button>
             </DialogClose>
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Adding..." : "kajshdkajh"}
+              {isPending ? "Adding..." : "Add Event"}
             </Button>
           </DialogFooter>
         </form>

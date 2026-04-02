@@ -19,9 +19,14 @@ export async function createEvent(formData: FormData) {
   const startTime = new Date(`${startDateStr}T${startTimeStr}`)
   const endTime = new Date(`${endDateStr}T${endTimeStr}`)
 
-  await prisma.event.create({
-    data: { title, startTime, endTime, userId: 1 },
-  })
+  try {
+    await prisma.event.create({ data: { title, startTime, endTime, userId: 1 } })
+    revalidatePath('/')
+    return {}
+  } catch (e) {
+    console.error('Error creating event: ', e)
+    return { error: 'Failed to create event. Please try again.' }
+  }
 
   revalidatePath('/')
 }
