@@ -136,7 +136,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/vercel/sandbox/primary/src/generated/prisma",
+      "value": "/Users/matiasharding/DESARROLLO/astra/src/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -145,16 +145,17 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "rhel-openssl-3.0.x",
+        "value": "darwin",
         "native": true
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/vercel/sandbox/primary/prisma/schema.prisma",
+    "sourceFilePath": "/Users/matiasharding/DESARROLLO/astra/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.9.0",
@@ -167,13 +168,13 @@ const config = {
   "inlineDatasources": {
     "db": {
       "url": {
-        "fromEnvVar": "DATABASE_URL",
+        "fromEnvVar": "POSTGRES_PRISMA_URL",
         "value": null
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Event {\n  id        Int      @id @default(autoincrement())\n  title     String\n  startTime DateTime\n  endTime   DateTime\n  user      User     @relation(fields: [userId], references: [id])\n  userId    Int\n  createdAt DateTime @default(now())\n}\n\nmodel User {\n  id        Int      @id @default(autoincrement())\n  name      String\n  password  String\n  email     String   @unique\n  events    Event[]\n  createdAt DateTime @default(now())\n}\n",
-  "inlineSchemaHash": "b4c0f69ddbc996a4a8515d9ebf67e4180d25b25166453e0d05765c6a3eacf1ce",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"POSTGRES_PRISMA_URL\")\n  directUrl = env(\"POSTGRES_URL_NON_POOLING\")\n}\n\nmodel Event {\n  id        Int      @id @default(autoincrement())\n  title     String\n  startTime DateTime\n  endTime   DateTime\n  user      User     @relation(fields: [userId], references: [id])\n  userId    Int\n  createdAt DateTime @default(now())\n}\n\nmodel User {\n  id        Int      @id @default(autoincrement())\n  name      String\n  password  String\n  email     String   @unique\n  events    Event[]\n  createdAt DateTime @default(now())\n}\n",
+  "inlineSchemaHash": "964cf4bc02212ded66671ada98a83f250271e30c6097aa089622fe6bba985c09",
   "copyEngine": true
 }
 
@@ -212,8 +213,8 @@ exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
 // file annotations for bundling tools to include these files
-path.join(__dirname, "libquery_engine-rhel-openssl-3.0.x.so.node");
-path.join(process.cwd(), "src/generated/prisma/libquery_engine-rhel-openssl-3.0.x.so.node")
+path.join(__dirname, "libquery_engine-darwin.dylib.node");
+path.join(process.cwd(), "src/generated/prisma/libquery_engine-darwin.dylib.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "src/generated/prisma/schema.prisma")
