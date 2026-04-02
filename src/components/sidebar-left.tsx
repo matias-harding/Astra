@@ -5,9 +5,11 @@
 import * as React from "react"
 import {
   AudioWaveform,
+  Calendar,
   // Blocks,
   // Calendar,
   Command,
+  LayoutDashboardIcon,
   // Home,
   // Inbox,
   MessageCircleQuestion,
@@ -53,6 +55,16 @@ const data = {
       title: "Search",
       url: "#",
       icon: Search,
+    },
+    {
+      title: "Dashboard",
+      url: "/dashboard",
+      icon: LayoutDashboardIcon,
+    },
+    {
+      title: "Calendar",
+      url: "/",
+      icon: Calendar,
     },
     // {
     //   title: "Ask AI",
