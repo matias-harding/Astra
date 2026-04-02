@@ -51,12 +51,14 @@ export default function EventDates() {
               />
             </PopoverContent>
           </Popover>
+          <input type="hidden" name="startDate" value={startDate ? format(startDate, "yyyy-MM-dd") : ""} />
         </Field>
         <Field className="w-32">
           <FieldLabel htmlFor="new-event-timepicker-start">Time</FieldLabel>
           <Input
             type="time"
             id="new-event-timepicker-start"
+            name="startTime"
             step="1"
             defaultValue={format(new Date(), "HH:mm")}
             className="appearance-none bg-background 
@@ -92,12 +94,14 @@ export default function EventDates() {
               />
             </PopoverContent>
           </Popover>
+          <input type="hidden" name="endDate" value={endDate ? format(endDate, "yyyy-MM-dd") : ""} />
         </Field>
         <Field className="w-32">
           <FieldLabel htmlFor="new-event-timepicker-end">Time</FieldLabel>
           <Input
             type="time"
             id="new-event-timepicker-end"
+            name="endTime"
             step="1"
             defaultValue={format(new Date(Date.now() + 60 * 60 * 1000), "HH:mm")}
             className="appearance-none bg-background 
