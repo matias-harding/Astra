@@ -32,7 +32,9 @@ export default function AddEvent() {
     const formData = new FormData(e.currentTarget)
     startTransition(async () => {
       const result = await createEvent(formData)
-      if (result?.error) {
+      if (!result?.error) {
+        toast.success("Event created successfully!")
+      }else{
         toast.error(result.error)
         return
       }
