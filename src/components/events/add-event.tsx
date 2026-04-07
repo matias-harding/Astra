@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import EventDates from "@/components/events/fields/event-dates";
+import { toast } from "sonner";
 import { createEvent } from "@/lib/actions/events";
 
 export default function AddEvent() {
@@ -30,7 +31,11 @@ export default function AddEvent() {
     e.preventDefault()
     const formData = new FormData(e.currentTarget)
     startTransition(async () => {
-      await createEvent(formData)
+      const result = await createEvent(formData)
+      if (result?.error) {
+        toast.error(result.error)
+        return
+      }
       setOpen(false)
     })
   }

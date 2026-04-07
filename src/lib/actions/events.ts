@@ -27,6 +27,4 @@ export async function createEvent(formData: FormData) {
     console.error('Error creating event: ', e)
     return { error: 'Failed to create event. Please try again.' }
   }
-
-  revalidatePath('/')
 }
